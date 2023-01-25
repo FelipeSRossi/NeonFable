@@ -13,5 +13,4 @@ UCLASS()
 class NEONFABLE_API ABaseEnemy : public APaperCharacter
 {
 	GENERATED_BODY()
-	
 };
