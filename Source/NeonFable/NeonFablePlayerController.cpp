@@ -44,6 +44,9 @@ void ANeonFablePlayerController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnMoveTriggered);
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Completed, this, &ANeonFablePlayerController::OnMoveReleased);
 		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Canceled, this, &ANeonFablePlayerController::OnMoveReleased);
+
+		EnhancedInputComponent->BindAction(BasicAttackAction, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnBasicAttackTriggered);
+		EnhancedInputComponent->BindAction(SummonAction1, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSummon1Triggered);
 	}
 }
 
@@ -55,6 +58,29 @@ void ANeonFablePlayerController::OnInputStarted()
 void ANeonFablePlayerController::OnMoveReleased()
 {
 }
+
+void ANeonFablePlayerController::OnBasicAttackTriggered()
+{
+	ANeonFableCharacter* ControlledCharacter = Cast <ANeonFableCharacter>(GetCharacter());
+
+	if (ControlledCharacter != nullptr)
+	{
+		ControlledCharacter->HandleBasicAttackCommand();
+	}
+
+}
+
+void ANeonFablePlayerController::OnSummon1Triggered()
+{
+	ANeonFableCharacter* ControlledCharacter = Cast <ANeonFableCharacter>(GetCharacter());
+
+	if (ControlledCharacter != nullptr)
+	{
+		ControlledCharacter->HandleSummon1Command();
+	}
+
+}
+
 
 // Triggered every frame when the input is held down
 void ANeonFablePlayerController::OnMoveTriggered(const FInputActionValue& InputActionValue)

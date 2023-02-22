@@ -39,6 +39,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* MoveAction;
 
+
+	/** Move Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* BasicAttackAction;
+
+	/** Summont Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* SummonAction1;
+
 	/** Jump Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
 	class UInputAction* SetDestinationTouchAction;
@@ -56,6 +65,10 @@ protected:
 	void OnInputStarted();
 	void OnMoveTriggered(const FInputActionValue& InputActionValue);
 	void OnMoveReleased();
+
+
+	void OnBasicAttackTriggered();
+	void OnSummon1Triggered();
 
 private:
 	FVector CachedDestination;

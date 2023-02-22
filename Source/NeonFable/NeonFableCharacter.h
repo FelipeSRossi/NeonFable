@@ -17,6 +17,19 @@ public:
 	// Called every frame.
 	virtual void Tick(float DeltaSeconds) override;
 
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleBasicAttackCommand();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSkill1Command();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSkill2Command();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSkill3Command();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSkill4Command();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSummon1Command();
+
 	/** Returns TopDownCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }
 	/** Returns CameraBoom subobject **/
@@ -30,5 +43,6 @@ private:
 	/** Camera boom positioning the camera above the character */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class USpringArmComponent* CameraBoom;
+
 };
 
