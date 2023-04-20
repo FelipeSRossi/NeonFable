@@ -29,6 +29,14 @@ public:
 		void HandleSkill4Command();
 	UFUNCTION(BlueprintImplementableEvent)
 		void HandleSummon1Command();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSummon1ReleaseCommand();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSummonSwitchLeftCommand();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSummonSwitchRightCommand();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleRotation(const FRotator& Rotation);
 
 	/** Returns TopDownCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetTopDownCameraComponent() const { return TopDownCameraComponent; }

@@ -39,14 +39,46 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* MoveAction;
 
+	/** Move Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+	class UInputAction* LookAction;
 
 	/** Move Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* LookMouseAction;
+
+	/**Basic Attack Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 	class UInputAction* BasicAttackAction;
 
-	/** Summont Action */
+
+	/** Skill1 Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction*SkillAction1;
+	/** Skill2 Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* SkillAction2;
+	/** Skill3 Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* SkillAction3;
+	/** Skill4 Input Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* SkillAction4;
+
+	/** Summon Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 		class UInputAction* SummonAction1;
+	/** Summon Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* SummonAction1Release;
+
+	/** Summon Switch Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* SummonSwitchLeft;
+	/** Summon Switch Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* SummonSwitchRight;
+
 
 	/** Jump Input Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Input, meta=(AllowPrivateAccess = "true"))
@@ -65,11 +97,24 @@ protected:
 	void OnInputStarted();
 	void OnMoveTriggered(const FInputActionValue& InputActionValue);
 	void OnMoveReleased();
+	void OnLookInputStarted();
+	void OnLookTriggered(const FInputActionValue& InputActionValue);
+	void OnLookReleased();
+	void OnLookMouseInputStarted();
+	void OnLookMouseTriggered(const FInputActionValue& InputActionValue);
+	void OnLookMouseReleased();
+
 
 
 	void OnBasicAttackTriggered();
 	void OnSummon1Triggered();
-
+	void OnSkill1Triggered();
+	void OnSkill2Triggered();
+	void OnSkill3Triggered();
+	void OnSkill4Triggered();
+	void OnSummon1ReleaseTriggered();
+	void OnSummonSwitchLeftTriggered();
+	void OnSummonSwitchRightTriggered();
 private:
 	FVector CachedDestination;
 
