@@ -64,6 +64,8 @@ void ANeonFablePlayerController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(SkillAction2, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSkill2Triggered);
 		EnhancedInputComponent->BindAction(SkillAction3, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSkill4Triggered);
 		EnhancedInputComponent->BindAction(SkillAction4, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSkill4Triggered);
+		EnhancedInputComponent->BindAction(Skill1LevelUp, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSkill1LevelUp);
+		EnhancedInputComponent->BindAction(LevelUpMode, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnLevelUpMode);
 		EnhancedInputComponent->BindAction(SummonAction1, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSummon1Triggered);
 		EnhancedInputComponent->BindAction(SummonAction1Release, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSummon1ReleaseTriggered);
 		EnhancedInputComponent->BindAction(SummonSwitchLeft, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSummonSwitchLeftTriggered);
@@ -148,6 +150,29 @@ void ANeonFablePlayerController::OnSkill4Triggered()
 	if (ControlledCharacter != nullptr)
 	{
 		ControlledCharacter->HandleSkill4Command();
+	}
+
+}
+
+
+void ANeonFablePlayerController::OnLevelUpMode()
+{
+	ANeonFableCharacter* ControlledCharacter = Cast <ANeonFableCharacter>(GetCharacter());
+
+	if (ControlledCharacter != nullptr)
+	{
+		ControlledCharacter->HandleLevelUpMode();
+	}
+
+}
+
+void ANeonFablePlayerController::OnSkill1LevelUp()
+{
+	ANeonFableCharacter* ControlledCharacter = Cast <ANeonFableCharacter>(GetCharacter());
+
+	if (ControlledCharacter != nullptr)
+	{
+		ControlledCharacter->HandleSkill1LevelUp();
 	}
 
 }

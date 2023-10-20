@@ -28,6 +28,10 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 		void HandleSkill4Command();
 	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSkill1LevelUp();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleLevelUpMode();
+	UFUNCTION(BlueprintImplementableEvent)
 		void HandleSummon1Command();
 	UFUNCTION(BlueprintImplementableEvent)
 		void HandleSummon1ReleaseCommand();
