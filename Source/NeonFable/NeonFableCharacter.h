@@ -30,7 +30,15 @@ public:
 	UFUNCTION(BlueprintImplementableEvent)
 		void HandleSkill1LevelUp();
 	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSkill2LevelUp();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSkill3LevelUp();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleSkill4LevelUp();
+	UFUNCTION(BlueprintImplementableEvent)
 		void HandleLevelUpMode();
+	UFUNCTION(BlueprintImplementableEvent)
+		void HandleLevelUpModeRelease();
 	UFUNCTION(BlueprintImplementableEvent)
 		void HandleSummon1Command();
 	UFUNCTION(BlueprintImplementableEvent)

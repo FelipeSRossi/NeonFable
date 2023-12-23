@@ -69,9 +69,23 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 		class UInputAction* LevelUpMode;
 
+	/** Skill Lvl Up Mode */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* LevelUpModeRelease;
+
+
 	/** Skill1 Lvl Up Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
 		class UInputAction* Skill1LevelUp;
+	/** Skill1 Lv2 Up Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* Skill2LevelUp;
+	/** Skill3 Lvl Up Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* Skill3LevelUp;
+	/** Skill4 Lvl Up Action */
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
+		class UInputAction* Skill4LevelUp;
 
 	/** Summon Action */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = Input, meta = (AllowPrivateAccess = "true"))
@@ -121,7 +135,11 @@ protected:
 	void OnSkill3Triggered();
 	void OnSkill4Triggered();
 	void OnLevelUpMode();
+	void OnLevelUpModeRelease();
 	void OnSkill1LevelUp();
+	void OnSkill2LevelUp();
+	void OnSkill3LevelUp();
+	void OnSkill4LevelUp();
 	void OnSummon1ReleaseTriggered();
 	void OnSummonSwitchLeftTriggered();
 	void OnSummonSwitchRightTriggered();
