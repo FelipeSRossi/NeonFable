@@ -6,6 +6,7 @@
 #include "Templates/SubclassOf.h"
 #include "GameFramework/PlayerController.h"
 #include "InputActionValue.h"
+#include "Camera/CameraComponent.h"
 #include "NeonFablePlayerController.generated.h"
 
 /** Forward declaration to improve compiling times */

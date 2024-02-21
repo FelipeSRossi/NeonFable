@@ -65,6 +65,9 @@ void ANeonFablePlayerController::SetupInputComponent()
 		EnhancedInputComponent->BindAction(SkillAction3, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSkill4Triggered);
 		EnhancedInputComponent->BindAction(SkillAction4, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSkill4Triggered);
 		EnhancedInputComponent->BindAction(Skill1LevelUp, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSkill1LevelUp);
+		EnhancedInputComponent->BindAction(Skill2LevelUp, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSkill2LevelUp);
+		EnhancedInputComponent->BindAction(Skill3LevelUp, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSkill3LevelUp);
+		EnhancedInputComponent->BindAction(Skill4LevelUp, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSkill4LevelUp);
 		EnhancedInputComponent->BindAction(LevelUpMode, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnLevelUpMode);
 		EnhancedInputComponent->BindAction(LevelUpModeRelease, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnLevelUpModeRelease);
 		EnhancedInputComponent->BindAction(SummonAction1, ETriggerEvent::Triggered, this, &ANeonFablePlayerController::OnSummon1Triggered);
@@ -226,7 +229,6 @@ void ANeonFablePlayerController::OnSkill4LevelUp()
 void ANeonFablePlayerController::OnSummon1Triggered()
 {
 	ANeonFableCharacter* ControlledCharacter = Cast <ANeonFableCharacter>(GetCharacter());
-
 	if (ControlledCharacter != nullptr)
 	{
 		ControlledCharacter->HandleSummon1Command();
@@ -274,23 +276,37 @@ void ANeonFablePlayerController::OnMoveTriggered(const FInputActionValue& InputA
 	FollowTime += GetWorld()->GetDeltaSeconds();
 
 	// Move towards mouse pointer or touch
-	APawn* ControlledPawn = GetPawn();
-
-	if (ControlledPawn != nullptr)
+	ANeonFableCharacter* ControlledCharacter = Cast <ANeonFableCharacter>(GetCharacter());
+	UCameraComponent* TopDownCamera = ControlledCharacter->GetTopDownCameraComponent();
+	if (ControlledCharacter != nullptr)
 	{
+		FVector CameraPosition = TopDownCamera->GetComponentLocation();
+		CameraPosition.Z = 0;
+
+		FVector CharacterPosition = ControlledCharacter->GetMesh()->GetComponentLocation();
+		CameraPosition.Z = 0;
+
+		FRotator LookAt = UKismetMathLibrary::FindLookAtRotation(CharacterPosition, CameraPosition);
+		LookAt.Roll = 0;
 		const FVector2D MoveValue = InputActionValue.Get<FVector2D>();
 		const FRotator MovementRotation(0.0f, 0.0f, 0.0f);
 
+
+
+
+
 		if (MoveValue.X != 0.0f)
 		{
-			const FVector MovementDirection = MovementRotation.RotateVector(FVector::RightVector);
-			ControlledPawn->AddMovementInput(MovementDirection, MoveValue.X);
+			FVector MovementDirection = LookAt.RotateVector(FVector::RightVector);
+			MovementDirection.Z= 0;
+			ControlledCharacter->AddMovementInput(MovementDirection, -MoveValue.X);
 		}
 
 		if (MoveValue.Y != 0.0f)
 		{
-			const FVector MovementDirection = MovementRotation.RotateVector(FVector::ForwardVector);
-			ControlledPawn->AddMovementInput(MovementDirection, MoveValue.Y);
+			FVector MovementDirection = LookAt.RotateVector(FVector::ForwardVector);
+			MovementDirection.Z = 0;
+			ControlledCharacter->AddMovementInput(MovementDirection, -MoveValue.Y);
 		}
 	}
 }
@@ -309,9 +325,9 @@ void ANeonFablePlayerController::OnLookTriggered(const FInputActionValue& InputA
 	if (ControlledPawn != nullptr)
 	{
 		const FVector2D MoveValue = InputActionValue.Get<FVector2D>();
-		FVector3d Move = FVector3d(-MoveValue.X, MoveValue.Y, 0.0);
+		//FVector3d Move = FVector3d(-MoveValue.X, MoveValue.Y, 0.0);
 		//ControlledPawn->SetActorRotation(Move.Rotation(), ETeleportType::None);
-		ControlledCharacter->HandleRotation(Move.Rotation());
+		//ControlledCharacter->HandleRotation(Move.Rotation());
 	}
 }
 
@@ -332,7 +348,7 @@ void ANeonFablePlayerController::OnLookMouseTriggered(const FInputActionValue& I
 		const FVector2D MoveValue = InputActionValue.Get<FVector2D>();
 		FVector3d Move = FVector3d(MoveValue.X, MoveValue.Y, 0.0);
 		//ControlledPawn->SetActorRotation(Move.Rotation(), ETeleportType::None);
-		ControlledCharacter->HandleRotation(Move.Rotation());
+		//ControlledCharacter->HandleRotation(Move.Rotation());
 	}
 }
 
